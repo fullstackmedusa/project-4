@@ -6,7 +6,7 @@ function Home() {
     const navigate = useNavigate()
   
     const addGroup = () => {
-      navigate('/add/group')
+      navigate('/create/group')
     }
   
     return (
