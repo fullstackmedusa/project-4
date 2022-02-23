@@ -4,10 +4,14 @@ const bcrypt = require('bcrypt');
 const SALT_ROUNDS = 6;
 
 const userSchema = new mongoose.Schema({
-  username: {type: String, required: true, lowercase: true, unique: true},
+  first_name: {type: String, required: true},
+  last_name: {type: String, required: true},
   email: {type: String, required: true, lowercase: true, unique: true},
   password: String,
-  photoUrl: String  // string from aws!
+  photoUrl: String,  // string from aws!
+  group_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Group"},
 }, {
   timestamps: true
 });
