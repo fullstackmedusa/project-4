@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './CreateGroup.css';
-
+import { useNavigate, useParams } from "react-router-dom";
 import { Button, Form, Grid, Header, Image,  Segment } from 'semantic-ui-react';
 
 export default function CreateGroupForm(props){
@@ -9,7 +9,8 @@ export default function CreateGroupForm(props){
     name: ''
   })
 
-  
+  const navigate = useNavigate();
+  const params = useParams();
 
   function handleFileInput(e){
     setSelectedFile(e.target.files[0])
