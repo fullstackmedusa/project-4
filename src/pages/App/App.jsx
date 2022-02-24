@@ -7,6 +7,7 @@ import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
 import userService from "../../utils/userService";
 import Home from "../../components/Home/Home";
+import CreateGroupForm from "../CreateGroup/CreateGroup";
 
 function App() {
   const [user, setUser] = useState(userService.getUser()); // getUser decodes our JWT token, into a javascript object
@@ -33,6 +34,10 @@ function App() {
         <Route
           path="/signup"
           element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin} />}
+        />
+        <Route
+          path="/create/group"
+          element={<CreateGroupForm/>}
         />
       </Routes>
     );

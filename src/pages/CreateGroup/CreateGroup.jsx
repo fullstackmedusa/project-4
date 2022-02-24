@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import './CreateGroup.css';
 
-import { Button, Form, Grid, Header, Image,  Segment } from 'semantic-ui-react'
+import { Button, Form, Grid, Header, Image,  Segment } from 'semantic-ui-react';
 
 export default function CreateGroupForm(props){
   const [selectedFile, setSelectedFile] = useState('')
@@ -38,10 +39,13 @@ export default function CreateGroupForm(props){
   return (
     
     <Grid textAlign='center' verticalAlign='middle'>
-      <Grid.Column style={{ maxWidth: 450 }}>
-        <Segment>
+    <Grid.Column style={{ maxWidth: 450 }}>
+      
+        <img src="https://i.imgur.com/HzvulAD.jpg" alt="Logo" className='logo'/>
+        <h1>Create New Group</h1>
+        <Segment >
         
-            <Form  autoComplete="off" onSubmit={handleSubmit}>
+            <Form  autoComplete="off" onSubmit={handleSubmit} className="add__container">
             
               <Form.Input
                   className="form-control"
@@ -51,13 +55,16 @@ export default function CreateGroupForm(props){
                   onChange={handleChange}
                   required
               />   
+              
+              
               <Form.Input
                 className="form-control"
                 type="file"
                 name="photo"
                 placeholder="upload a group icon!"
                 onChange={handleFileInput}
-              />   
+              />  
+              
               <Button
                 type="submit"
                 className="btn"
@@ -66,9 +73,9 @@ export default function CreateGroupForm(props){
               </Button>
             </Form>
           </Segment>
-      </Grid.Column>
+          </Grid.Column>
     </Grid>
-   
+ 
   ); 
 }
 
