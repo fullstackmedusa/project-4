@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, Icon, Image } from 'semantic-ui-react'
 import { Link } from "react-router-dom";
 
-function PostCard({group, user}) { 
+function GroupCard({group, user}) { 
 
 
     // post.likes = [{userId: 1234, username: 'jim', _id: 'likeId1234'}]
@@ -29,17 +29,18 @@ function PostCard({group, user}) {
     // clickHandler = removeLike
    
   
+    
   
       
     return (
-      <Card key={group._id} raised>
-      <Image src={`${group.photoUrl}`} wrapped ui={false} />
+      <Card key={group?._id? group._id : ''}  raised>
+      <Image src={`${group?.photoUrl? group.photoUrl : ''}`} wrapped ui={false} />
       <Card.Content>
-        <Card.Description>{group.name}</Card.Description>
-        <Card.Footer><h3>{group.user.first_name}</h3></Card.Footer>
+        <Card.Description>{group?.name? group.name : ''}</Card.Description>
+        <Card.Content><h3>{group?.user_id?.first_name? group.user_id.first_name :''}</h3></Card.Content>
       </Card.Content>
     </Card>
     )
   }
   
-  export default PostCard;
+  export default GroupCard;

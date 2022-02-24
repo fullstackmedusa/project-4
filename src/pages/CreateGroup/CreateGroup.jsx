@@ -2,8 +2,12 @@ import React, { useState } from 'react';
 import './CreateGroup.css';
 import { useNavigate, useParams } from "react-router-dom";
 import { Button, Form, Grid, Header, Image,  Segment } from 'semantic-ui-react';
+import * as groupsAPI from "../../utils/groupsApi";
 
 export default function CreateGroupForm(props){
+  const [groups, setGroups] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const [selectedFile, setSelectedFile] = useState('')
   const [state, setState] = useState({
     name: ''
@@ -24,6 +28,23 @@ export default function CreateGroupForm(props){
     })
   }
 
+  async function handleCreateGroup(group) {
+    try {
+      setLoading(true);
+      const data = await groupsAPI.create(group); // our server is going to return
+      // the created post, that will be inside of data, which is the response from
+      // the server, we then want to set it in state
+      console.log(data, " this is response from the server, in handleCreateGroup");
+      setGroups([data.group, ...groups]);
+      setLoading(false);
+      navigate('/');
+    } catch (err) {
+      setError(err.message);
+      console.log(err);
+      setError(err.message);
+    }
+  }
+
   function handleSubmit(e){
     e.preventDefault()
              
@@ -32,9 +53,11 @@ export default function CreateGroupForm(props){
 	// routes/api/posts create route upload.single('photo')
     formData.append('name', state.name)
    
-	props.handleCreateGroup(formData)
+	  handleCreateGroup(formData)
     // Have to submit the form now! We need a function!
+
   }
+
 
 
   return (
@@ -69,6 +92,7 @@ export default function CreateGroupForm(props){
               <Button
                 type="submit"
                 className="btn"
+                
               >
                 Create Group
               </Button>

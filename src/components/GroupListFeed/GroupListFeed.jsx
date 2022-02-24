@@ -1,9 +1,9 @@
 import React from "react";
 import { Card, Dimmer, Segment, Image } from "semantic-ui-react";
-import PostCard from "../PostCard/PostCard";
-import Loader from '../Loader/Loader'
+import GroupCard from '../GroupCard/GroupCard';
+import Loader from '../Loader/Loader';
 
-export default function PostGroupList({
+export default function GroupListFeed({
   groups,
   numPhotosCol,
   user,
@@ -26,7 +26,7 @@ export default function PostGroupList({
     ) : null}
     {groups.map((group) => {
       return (
-        <PostCard
+        <GroupCard
           group={group}
           key={group._id}
           user={user}

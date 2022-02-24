@@ -28,11 +28,11 @@ function create(req, res){
 			// model talking to mongodb
 			let group = await Group.create({
 				name: req.body.name,
-				user: req.user,
+				user_id: req.user,
 				photoUrl: data.Location
 			})
 
-			group = await group.populate('user')
+			group = await group.populate('user_id')
 
 			// respond to the client
 			// What file on the client can we log out this response?
@@ -57,8 +57,8 @@ async function index(req, res) {
 	  // this populates the user when you find the posts
 	  // so you'll have access to the users information
 	  // when you fetch teh posts
-	  const posts = await Post.find({}).populate("user").exec();
-	  res.status(200).json({ posts: posts });
+	  const groups = await Group.find({}).populate("user_id").exec();
+	  res.status(200).json({ groups: groups });
 	} catch (err) {
 	  res.status(400).json({ err });
 	}
