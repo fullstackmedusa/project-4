@@ -39,6 +39,11 @@ function App() {
           path="/create/group"
           element={<CreateGroupForm/>}
         />
+        <Route
+          path="/group/:id"
+          element={<h1>This is the Group Page</h1>}        
+        />
+        
       </Routes>
     );
   }

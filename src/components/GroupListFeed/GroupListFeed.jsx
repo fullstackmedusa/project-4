@@ -3,6 +3,8 @@ import { Card, Dimmer, Segment, Image } from "semantic-ui-react";
 import GroupCard from '../GroupCard/GroupCard';
 import Loader from '../Loader/Loader';
 
+
+
 export default function GroupListFeed({
   groups,
   numPhotosCol,
@@ -26,6 +28,7 @@ export default function GroupListFeed({
     ) : null}
     {groups.map((group) => {
       return (
+      
         <GroupCard
           group={group}
           key={group._id}
