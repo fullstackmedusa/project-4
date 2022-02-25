@@ -12,7 +12,7 @@ function Home() {
     return (
       <div className="home">
         <div className="home__container">
-          <img src="https://i.imgur.com/HzvulAD.jpg" alt="Home Manager Logo" />
+          <img src="https://i.imgur.com/NtINIMg.jpeg" alt="Home Manager Logo" />
           <h1>Welcome to Home Manager</h1>
           <p>
             Keep your household in the loop with Home Manager
