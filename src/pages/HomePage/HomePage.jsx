@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from "react";
-// import Header from "../../components/Header/Header";
+import Header from "../../components/Header/Header";
 import CreateGroup from "../../components/CreateGroup/CreateGroup";
 import GroupListFeed from "../../components/GroupListFeed/GroupListFeed";
 import * as groupsAPI from "../../utils/groupsApi";
@@ -36,6 +36,11 @@ export default function HomePage({ user }) {
 
   return (
     <Grid centered>
+       <Grid.Row>
+        <Grid.Column>
+          <Header user={user} />
+        </Grid.Column>
+      </Grid.Row>
       <Grid.Row>
           <CreateGroup />
       </Grid.Row>

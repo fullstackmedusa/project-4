@@ -8,6 +8,7 @@ import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
 import userService from "../../utils/userService";
 import CreateGroupForm from "../CreateGroup/CreateGroup";
+import GroupPage from "../GroupPage/GroupPage";
 
 function App() {
   const [user, setUser] = useState(userService.getUser()); // getUser decodes our JWT token, into a javascript object
@@ -41,7 +42,7 @@ function App() {
         />
         <Route
           path="/group/:id"
-          element={<h1>This is the Group Page</h1>}        
+          element={<GroupPage/>}        
         />
         
       </Routes>
