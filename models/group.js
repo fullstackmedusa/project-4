@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 
 const TaskSchema = new mongoose.Schema({
     desc: String,
-    date: Date,
+    date: String,
     complete: Boolean,
-    user_id: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+    // user_id: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
 })
 
 const groupSchema = new mongoose.Schema({

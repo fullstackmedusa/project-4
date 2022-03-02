@@ -3,60 +3,35 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Button, Form, Grid, Header, Image,  Segment } from 'semantic-ui-react';
 import * as tasksAPI from "../../utils/tasksApi";
 
-///////////////
-export default function CreateTaskForm(props){
-    const [tasks, setTasks] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState("");
-    const [state, setState] = useState({
-      desc: '',
-      date:'',
-      complete:'false'
 
-    })
-
-///////////////
-
-
-function TaskEdit({ task, onSaveTask }) {
-  const [desc, setDesc] = useState("");
-  const [date, setDate] = useState("");
-
-  const saveTask = (e) => {
-    e.preventDefault();
-    onSaveTask({ desc: desc, date: date });
-
-    setDesc("");
-    setDate("");
-  };
-
-  const [tasks, setTasks] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+function TaskEdit(props) {
   const [state, setState] = useState({
-    desc: '',
-    date: '',
-  })
+		desc: '',
+		date: '',
+		complete: false,
+	})
+ 
+  // const saveTask = (e) => {
+  //   e.preventDefault();
+  //   onSaveTask({ desc: desc, date: date, complete: complete });
+
+  //   setDesc("");
+  //   setDate("");
+  //   setComplete(false);
+  // };
 
 
 
 
 
 
-  async function handleCreateTask(task) {
-    try {
-      setLoading(true);
-      const data = await tasksAPI.create(task); // our server is going to return
-      // the created post, that will be inside of data, which is the response from
-      // the server, we then want to set it in state
-      console.log(data, " this is response from the server, in handleCreateTask");
-      setTasks([data.task, ...tasks]);
-      setLoading(false);
-    } catch (err) {
-      setError(err.message);
-      console.log(err);
-      setError(err.message);
-    }
+
+ 
+  function handleChange(e){
+    setState({
+      ...state,
+      [e.target.name]: e.target.value
+    })
   }
 
   function handleSubmit(e){
@@ -66,8 +41,9 @@ function TaskEdit({ task, onSaveTask }) {
     
     formData.append('desc', state.desc)
     formData.append('date', state.date)
+    formData.append('complete', state.complete)
    
-	handleCreateTask(formData)
+	props.handleCreateTask(formData)
     // Have to submit the form now! We need a function!
 
   }
@@ -81,8 +57,8 @@ function TaskEdit({ task, onSaveTask }) {
           type="text"
           name="desc"
           id="desc"
-          value={desc}
-          onChange={(e) => setDesc(e.target.value)}
+          value={state.desc}
+          onChange={handleChange}
         />
 
         <label htmlFor="date">Date</label>
@@ -90,12 +66,12 @@ function TaskEdit({ task, onSaveTask }) {
           type="text"
           name="date"
           id="date"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
+          value={state.date}
+          onChange={handleChange}
         />
 
         <div className="text-right">
-          <Button className="button dark" onClick={saveTask}>
+          <Button className="button dark" onClick={handleSubmit}>
             Save
           </Button>
         </div>

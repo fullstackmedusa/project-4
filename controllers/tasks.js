@@ -19,10 +19,10 @@ async function create(req, res){
 				desc: req.body.desc,
 				date: req.body.date,
 				complete: req.body.complete,
-				user_id: req.user._id
+				// user_id: req.user._id
 			})
 
-			task = await task.populate('user_id')
+			// task = await task.populate('user_id')
 
 			// respond to the client
 			// What file on the client can we log out this response?

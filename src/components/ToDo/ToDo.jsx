@@ -1,16 +1,23 @@
 import "./ToDo.css";
 import "../../assets/styles.css";
 import React, {useState} from "react";
+import { useParams } from "react-router-dom";
 import Tasks from "../Tasks/Tasks";
 import TaskEdit from "../TaskEdit/TaskEdit";
 import { Header, Segment, Image, Icon } from "semantic-ui-react";
 import * as tasksAPI from "../../utils/tasksApi";
 
 export default function ToDo() {
-	const [tasks, setTasks] = useState([
-		{ desc: "Learn React", id: 1, date: "2021-01-03 10:00", status: "Complete" },
-		{ desc: "Profit", id: 2, date: "2021-01-05 15:00", status: "Open" },
-	  ]);
+	const [tasks, setTasks] = useState([])
+	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState("");
+	const params = useParams();
+	const [state, setState] = useState({
+		desc: '',
+		date: '',
+		complete: false,
+	})
+	
 	const [showTaskEdit, setShowTaskEdit] = useState(false);
 	const onTglStatus = (task) => {
 		console.log("completing task");
@@ -25,11 +32,28 @@ export default function ToDo() {
 	  const onSaveTask = ({ desc, date }) => {
 		console.log("saving tasks");
 		setTasks([
-		  { desc: desc, date: date, id: Date.now(), complete: false },
+		  { desc: desc, date: date, complete: false },
 		  ...tasks,
 		]);
 	  };
-	  
+	
+	 
+	  async function handleCreateTask(task) {
+		console.log(params.id, '<-- params.id')
+		try {
+		  setLoading(true);
+		  const data = await tasksAPI.create(task, params.id); // our server is going to return
+		  // the created post, that will be inside of data, which is the response from
+		  // the server, we then want to set it in state
+		  console.log(data, " this is response from the server, in handleCreateTask");
+		  setTasks([data.task, ...tasks]);
+		  setLoading(false);
+		} catch (err) {	
+		  setError(err.message);
+		  console.log(err);
+		  setError(err.message);
+		}
+	  }
 	  
 	  
 	return (
@@ -43,7 +67,7 @@ export default function ToDo() {
             {showTaskEdit && "➖"}
           </button>
         </div>
-        {showTaskEdit && <TaskEdit task={{}} onSaveTask={onSaveTask} />}
+        {showTaskEdit && <TaskEdit task={{}} handleCreateTask={handleCreateTask} />}
         <Tasks tasks={tasks} onTglStatus={onTglStatus}></Tasks>
       </div>
     </div>

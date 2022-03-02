@@ -2,7 +2,7 @@ import "./Task.css"
 
 function Task({ task, onTglStatus }) {
   return (
-    <div className="card text-left" key={task.id}>
+    <div className="card text-left" key={task._id}>
       <div className="row">
         <div className="col-10">
           <h4>{task.desc}</h4>
@@ -22,7 +22,7 @@ function Task({ task, onTglStatus }) {
           </button>
         </div>
         <div className="col-12">
-          <p>{task.remarks}</p>
+          
         </div>
       </div>
     </div>

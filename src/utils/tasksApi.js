@@ -1,17 +1,15 @@
 import tokenService from "./tokenService"
 
-const BASE_URL = '/api/tasks/'
+const BASE_URL = '/api/newtask'
 
-export function create(taskInfoFromTheForm){
+export function create(taskInfoFromTheForm, groupid){
 	// Make a post request to the server
-	return fetch(BASE_URL, {
+	return fetch(`${BASE_URL}/${groupid}`, {
 		method: 'POST',
-		// We are sending over a picture
-		// multipart/form-data < - is the content type
-		body: taskInfoFromTheForm, // <- postInfoFromTheForm has to be formData
-		headers: {
-			'Authorization': 'Bearer ' + tokenService.getToken()
-		}
+		
+		headers: new Headers({'Content-Type': 'application/json'}),
+        body: JSON.stringify(taskInfoFromTheForm)
+		
 	}).then(res => {
 		// Valid login if we have a status of 2xx (res.ok)
 		if (res.ok) return res.json();
@@ -19,8 +17,8 @@ export function create(taskInfoFromTheForm){
 	  })
 }
 
-export function getAll() {
-	return fetch(BASE_URL, {
+export function getAll(id) {
+	return fetch(BASE_URL + id, {
 	  headers: {
 		'Authorization': 'Bearer ' + tokenService.getToken()
 	  }
