@@ -1,10 +1,10 @@
 import tokenService from "./tokenService"
 
-const BASE_URL = '/api/newtask'
+const BASE_URL = '/api';
 
-export function create(taskInfoFromTheForm, groupid){
+export function create(taskInfoFromTheForm, groupId){
 	// Make a post request to the server
-	return fetch(`${BASE_URL}/${groupid}`, {
+	return fetch(`${BASE_URL}/${groupId}/newtask`, {
 		method: 'POST',
 		
 		headers: new Headers({'Content-Type': 'application/json'}),
@@ -17,11 +17,3 @@ export function create(taskInfoFromTheForm, groupid){
 	  })
 }
 
-export function getAll(id) {
-	return fetch(BASE_URL + id, {
-	  headers: {
-		'Authorization': 'Bearer ' + tokenService.getToken()
-	  }
-	})
-	.then(res => res.json());
-  }

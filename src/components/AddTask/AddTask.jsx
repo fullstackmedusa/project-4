@@ -4,13 +4,17 @@ import { Button, Form, Grid, Header, Image,  Segment } from 'semantic-ui-react';
 import * as tasksAPI from "../../utils/tasksApi";
 
 
-function TaskEdit(props) {
-  const [state, setState] = useState({
-		desc: '',
-		date: '',
-		complete: false,
-	})
- 
+  export function CreateTaskForm(props){
+    const [tasks, setTasks] = useState([]);
+    const [state, setState] = useState({
+      desc: '',
+      date: '',
+      complete: false,
+    })
+
+    const {groupId} = useParams();
+   
+    
   // const saveTask = (e) => {
   //   e.preventDefault();
   //   onSaveTask({ desc: desc, date: date, complete: complete });
@@ -34,6 +38,17 @@ function TaskEdit(props) {
     })
   }
 
+  async function handleCreateTask(task, groupId) {
+      
+      const data = await tasksAPI.create(task,groupId ); // our server is going to return
+      // the created post, that will be inside of data, which is the response from
+      // the server, we then want to set it in state
+      
+      console.log(data, " this is response from the server, in handleCreateGroup");
+      setTasks([data.task, ...tasks]);
+      
+  }
+
   function handleSubmit(e){
     e.preventDefault()
              
@@ -43,7 +58,7 @@ function TaskEdit(props) {
     formData.append('date', state.date)
     formData.append('complete', state.complete)
    
-	props.handleCreateTask(formData)
+	  handleCreateTask(formData)
     // Have to submit the form now! We need a function!
 
   }
@@ -71,7 +86,7 @@ function TaskEdit(props) {
         />
 
         <div className="text-right">
-          <Button className="button dark" onClick={handleSubmit}>
+          <Button  className="button dark" >
             Save
           </Button>
         </div>
@@ -80,4 +95,4 @@ function TaskEdit(props) {
   );
 }
 
-export default TaskEdit;
+export default CreateTaskForm;
