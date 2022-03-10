@@ -5,8 +5,8 @@ const tasksCtrl = require('../../controllers/tasks');
 // /*---------- Public Routes ----------*/
 
 
-router.post('/:groupId/newtask', isAuthenticated, tasksCtrl.create);
-router.get('/:groupId/newtask', tasksCtrl.index) //<--move this to group routes and group controller
+router.post('/', isAuthenticated, tasksCtrl.create);
+router.get('/', tasksCtrl.index) //<--move this to group routes and group controller
 
 
 /*---------- Protected Routes ----------*/

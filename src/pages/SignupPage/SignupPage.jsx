@@ -10,8 +10,7 @@ export default function SignUpPage(props) {
 
   const [error, setError] = useState('')
   const [state, setState] = useState({
-    first_name: '',
-    last_name:'',
+    username:'',
     email: '',
     password: '',
     passwordConf: '',
@@ -59,16 +58,9 @@ export default function SignUpPage(props) {
           <Form autoComplete="off" onSubmit={handleSubmit}>
             <Segment stacked>
               <Form.Input
-                name="first_name"
-                placeholder="first name"
-                value={state.first_name}
-                onChange={handleChange}
-                required
-              />
-              <Form.Input
-                name="last_name"
-                placeholder="last name"
-                value={state.last_name}
+                name="username"
+                placeholder="username"
+                value={state.username}
                 onChange={handleChange}
                 required
               />

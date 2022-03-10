@@ -1,34 +1,15 @@
-import React from "react";
-import { Card, Dimmer, Segment, Image } from "semantic-ui-react";
+import React from 'react';
 import TaskCard from '../TaskCard/TaskCard';
 
+export default function TaskList(props){
 
-export default function TaskList({
-    tasks,
-    
-  }) {
-  
-   
-  
-  
     return (
+       <div>THIS IS THE TASK LIST THAT WILL RENDER OUT EACH TASK AS A CARD</div>
+    )
+}
+
+
+
+
+ 
   
-      <Card.Group itemsPerRow={1} stackable >
-      {tasks.map((task) => {
-        return (
-        
-          <GroupCard
-            task={task}
-            key={task._id}
-            
-          />
-        );
-      })}
-    </Card.Group>
-  
-  
-  
-  
-   
-    );
-  }
