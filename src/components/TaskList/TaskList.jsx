@@ -1,11 +1,23 @@
 import React from 'react';
+import { Card  } from 'semantic-ui-react'
 import TaskCard from '../TaskCard/TaskCard';
 
-export default function TaskList(props){
+export default function TaskList({tasks}){
 
-    return (
-       <div>THIS IS THE TASK LIST THAT WILL RENDER OUT EACH TASK AS A CARD</div>
-    )
+  return (
+    <Card.Group itemsPerRow={1} stackable>
+       
+            {tasks.map((task) => {
+            return ( 
+                    <TaskCard 
+                        task={task} 
+                        key={task._id} 
+                        />
+                )
+            })}
+    </Card.Group>
+
+)
 }
 
 

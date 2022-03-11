@@ -1,15 +1,29 @@
 import React from 'react';
+import { Card, CardHeader, Icon, Image, Checkbox } from 'semantic-ui-react'
+import "./Taskcard.css"
 
-function TaskCard(props) { 
 
+function TaskCard({task}) { 
+
+ 
   return (
-    <div>I will render each task as a semantic ui card</div>
+    <Card style={{ maxWidth: 400 }} key={task._id}>
+   
+      <Card.Content>
+        <Card.Header>{task.description}</Card.Header>
+      
+      </Card.Content>
+      <Card.Content >
+        <Card.Description>
+        {task.duration}
+        <Checkbox style={{textAlign: 'right'}} size='large' color={'grey'} />
+        </Card.Description>
+      </Card.Content>
+    </Card>
   );
 }
 
 export default TaskCard;
-
-
 
 // import React from 'react';
 // import { Card, Icon, Image } from 'semantic-ui-react'

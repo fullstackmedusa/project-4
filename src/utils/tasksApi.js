@@ -1,6 +1,6 @@
-import tokenService from "./tokenService"
+import tokenService from "./tokenService";
 
-const BASE_URL = '/api/tasks'
+const BASE_URL = '/api/tasks';
 
 export function create(infoFromTheForm){
 	// Make a post request to the server
